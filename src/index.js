@@ -1,5 +1,5 @@
 // TODO: Render the `App` component to the DOM
-var nullExample = {
+window.nullExample = {
   id: {
     videoId: 'noVideo'
   },

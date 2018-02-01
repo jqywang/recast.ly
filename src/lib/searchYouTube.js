@@ -6,7 +6,7 @@ var searchYouTube = (options, callback) => {
       q: options,
       part: 'snippet'
     }, {maxResults: 5}),
-    timeout: 2000,
+    timeout: 5000,
     url: 'https://www.googleapis.com/youtube/v3/search',
     success: (data) => {
       callback(data);

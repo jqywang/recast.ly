@@ -3,9 +3,19 @@ var Search = (props) => {
     searchYouTube($('input').val(), props.changeList);
     $('input').val('');
   };
+  var lastSearch = 0;
+  var liveSearch = (e) => {
+    if (lastSearch + 500 < Date.now()) {
+      lastSearch = Date.now();
+      searchYouTube($('input').val(), props.changeList);
+      if (e.keyCode === 13) {
+        $('input').val('');
+      }
+    }
+  };
   return (
     <div className="search-bar form-inline">
-      <input className="form-control" type="text" />
+      <input onKeyUp={liveSearch} className="form-control" type="text" />
       <button onClick={searchEnter} className="btn hidden-sm-down">
         <span className="glyphicon glyphicon-search"></span>
       </button>

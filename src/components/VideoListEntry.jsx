@@ -1,27 +1,22 @@
-class VideoListEntry extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  onVideoClick() {
-    this.props.setSelected(this.props.video);
-  }
-  render() {
-    return (
-      <div className="video-list-entry media">
-        <div className="media-left media-middle">
-          <img className="media-object" src={this.props.video.snippet.thumbnails.default.url} alt="" />
-        </div>
-        <div className="media-body">
-          <div className="video-list-entry-title" 
-            onClick={this.onVideoClick.bind(this)}> 
-            {this.props.video.snippet.title}
-          </div>
-          <div className="video-list-entry-detail">{this.props.video.snippet.description}</div>
-        </div>
-      </div>);
-  }
+var VideoListEntry = (props) => {
   
-}
+  var onVideoClick = () => {
+    props.setSelected(props.video);
+  };
+  return (
+    <div className="video-list-entry media">
+      <div className="media-left media-middle">
+        <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
+      </div>
+      <div className="media-body">
+        <div className="video-list-entry-title" 
+          onClick={onVideoClick.bind(this)}> 
+          {props.video.snippet.title}
+        </div>
+        <div className="video-list-entry-detail">{props.video.snippet.description}</div>
+      </div>
+    </div>);
+};
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated

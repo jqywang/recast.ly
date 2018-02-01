@@ -13,7 +13,7 @@ class App extends React.Component {
     this.setState({selectedVid: video});
   }
   changeList(data) {
-    this.setState({selectedVideoList: data.items, selectedVid: data.items[0]});
+    this.setState({selectedVideoList: data.items, selectedVid: data.items[0] || this.props.nullExample});
     // on success ::::this.setState({seletedVideoList: soemthign}, {selectedVid: something[0]});
   }
   render() {
