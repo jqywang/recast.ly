@@ -1,34 +1,19 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.changeList('dogs');
     this.state = {
-      selectedVideoList: exampleVideoData,
-      selectedVid: exampleVideoData[0]
+      selectedVideoList: [],
+      selectedVid: this.props.nullExample
     };
+  }
+  componentDidMount() {
+    this.props.searchYouTube('dogs', this.changeList.bind(this));
   }
   setSelected(video) {
     this.setState({selectedVid: video});
   }
-  changeList(query) {
-    $.ajax({
-      type: 'GET',
-      data: $.extend({
-        key: YOUTUBE_API_KEY,
-        q: query,
-        part: 'snippet'
-      }, {maxResults: 5}),
-      timeout: 2000,
-      url: 'https://www.googleapis.com/youtube/v3/search',
-      success: (data) => {
-        //console.log(this);
-        this.setState({selectedVideoList: data.items, selectedVid: data.items[0]});
-      },
-      error: () => console.log('get request from search failed')
-    });
-    
-    
-    
+  changeList(data) {
+    this.setState({selectedVideoList: data.items, selectedVid: data.items[0]});
     // on success ::::this.setState({seletedVideoList: soemthign}, {selectedVid: something[0]});
   }
   render() {
@@ -55,4 +40,4 @@ class App extends React.Component {
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
 window.App = App;
-ReactDOM.render(<App/>, document.getElementById("app"));
+// ReactDOM.render(<App/>, document.getElementById("app"));

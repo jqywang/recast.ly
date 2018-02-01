@@ -1,6 +1,6 @@
 var Search = (props) => {
   var searchEnter = () => {
-    props.changeList($('input').val());
+    searchYouTube($('input').val(), props.changeList);
     $('input').val('');
   };
   return (
