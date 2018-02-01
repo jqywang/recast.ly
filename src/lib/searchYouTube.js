@@ -2,14 +2,15 @@ var searchYouTube = (options, callback) => {
   $.ajax({
     type: 'GET',
     data: $.extend({
-      key: YOUTUBE_API_KEY,
-      q: options,
-      part: 'snippet'
-    }, {maxResults: 5}),
+      key: options.key,
+      q: options.query,
+      part: 'snippet',
+      type: 'video'
+    }, {maxResults: options.max}),
     timeout: 5000,
     url: 'https://www.googleapis.com/youtube/v3/search',
     success: (data) => {
-      callback(data);
+      callback(data.items);
     },
     error: () => console.log('get request from search failed')
   });

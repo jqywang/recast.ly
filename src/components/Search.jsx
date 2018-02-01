@@ -1,13 +1,13 @@
 var Search = (props) => {
   var searchEnter = () => {
-    searchYouTube($('input').val(), props.changeList);
+    searchYouTube({key: window.YOUTUBE_API_KEY, query: $('input').val(), max: 5}, props.changeList);
     $('input').val('');
   };
   var lastSearch = 0;
   var liveSearch = (e) => {
     if (lastSearch + 500 < Date.now()) {
       lastSearch = Date.now();
-      searchYouTube($('input').val(), props.changeList);
+      searchYouTube({key: window.YOUTUBE_API_KEY, query: $('input').val(), max: 5}, props.changeList);
       if (e.keyCode === 13) {
         $('input').val('');
       }

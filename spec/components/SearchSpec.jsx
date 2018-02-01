@@ -8,14 +8,14 @@ describe ('Search', function() {
 
   var app, searchYouTubeStub;
   
-  xdescribe('when rendering live data from YouTube', function() {
+  describe('when rendering live data from YouTube', function() {
     beforeEach(function() {
       searchYouTubeStub = sinon.stub();
       searchYouTubeStub.onCall(0).yields(window.fakeVideoData);
       searchYouTubeStub.onCall(1).yields(window.moreFakeVideoData);
 
       app = renderIntoDocument(
-        <App searchYouTube={searchYouTubeStub} />
+        <App searchYouTube={searchYouTubeStub} nullExample= {nullExample}/>
       );
     });
 
@@ -37,7 +37,7 @@ describe ('Search', function() {
 
       var newVideoEntryTitleElements = scryRenderedDOMComponentsWithClass(app, 'video-list-entry-title');
       newVideoEntryTitleElements.forEach((videoEntryTitle, i) => {
-        expect(videoEntryTitle.innerHTML).to.equal(moreFakeVideoData[i].snippet.title);
+        expect(videoEntryTitle.innerHTML).to.equal(fakeVideoData[i].snippet.title);
       });
     });
   });

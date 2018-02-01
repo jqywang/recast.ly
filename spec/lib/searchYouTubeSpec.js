@@ -11,15 +11,18 @@ var getURLSearchParams = function(url) {
 
 var hasSameShape = function(objectOne, objectTwo) {
   if (Object.keys(objectOne).length !== Object.keys(objectTwo).length) {
+    console.log('false 1');
     return false;
   }
 
   for (var key in objectOne) {
     if (!key in objectTwo) {
+      console.log('false 2');
       return false;
     }
 
     if (typeof objectOne[key] !== typeof objectTwo[key]) {
+      console.log('false 3', key);
       return false;
     }
 
@@ -75,10 +78,14 @@ describe('searchYouTube', function() {
 
     // We want this test to make a real AJAX request
     xhr.restore();
-
-    searchYouTube(options, (data) => {
+    window.searchYouTube(options, (data) => {
+      console.log('did searchYouTube');
+      console.log(data);
+      console.log(window.exampleVideoData);
       expect(hasSameShape(data, window.exampleVideoData)).to.be.true;
       done();
     });
+    
+
   });
 });

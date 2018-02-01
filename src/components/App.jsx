@@ -7,13 +7,13 @@ class App extends React.Component {
     };
   }
   componentDidMount() {
-    this.props.searchYouTube('dogs', this.changeList.bind(this));
+    this.props.searchYouTube({key: window.YOUTUBE_API_KEY, query: 'dogs', max: 5}, this.changeList.bind(this));
   }
   setSelected(video) {
     this.setState({selectedVid: video});
   }
   changeList(data) {
-    this.setState({selectedVideoList: data.items, selectedVid: data.items[0] || this.props.nullExample});
+    this.setState({selectedVideoList: data, selectedVid: data[0] || this.props.nullExample});
     // on success ::::this.setState({seletedVideoList: soemthign}, {selectedVid: something[0]});
   }
   render() {
