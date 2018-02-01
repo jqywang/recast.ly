@@ -2,13 +2,14 @@ class VideoList extends React.Component {
   constructor(props) {
     super(props);
     //this.props.videos now has example video data
-    //tested to be true^^   
+    //tested to be true^^  
+    //has this.setSelected 
   }
   //onvideoclick
   render() {
     return (
       <div className="video-list">
-        {this.props.videos.map(video => </*on click do something */VideoListEntry video={video}/>)}
+        {this.props.videos.map(video => <VideoListEntry setSelected={this.props.setSelected} video={video}/>)}
       </div>);
   }
 }

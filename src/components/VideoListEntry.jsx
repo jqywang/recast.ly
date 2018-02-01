@@ -3,7 +3,7 @@ class VideoListEntry extends React.Component {
     super(props);
   }
   onVideoClick() {
-    VideoPlayer.setState({video: this.props.video});
+    this.props.setSelected(this.props.video);
   }
   render() {
     return (
@@ -13,8 +13,8 @@ class VideoListEntry extends React.Component {
         </div>
         <div className="media-body">
           <div className="video-list-entry-title" 
-          onClick={this.onVideoClick.bind(this)}> 
-          {this.props.video.snippet.title}
+            onClick={this.onVideoClick.bind(this)}> 
+            {this.props.video.snippet.title}
           </div>
           <div className="video-list-entry-detail">{this.props.video.snippet.description}</div>
         </div>
